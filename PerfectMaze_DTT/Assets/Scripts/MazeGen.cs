@@ -27,34 +27,48 @@ public class MazeGen : MonoBehaviour
                 Nodes.Add(newNode);
             }
         }
+        CreateMaze();
+    }
+
+    public void CreateMaze()
+    {
 
         List<Node> currentNodes = new List<Node>();
         List<Node> completed = new List<Node>();
 
-        currentNodes.Add(Nodes[Random.Range(0, Nodes.Count)]);
+
+        int index = Random.Range(0, Nodes.Count);
+        currentNodes.Add(Nodes[index]);
         currentNodes[0].SetState(States.current);
 
-        for (int i = 0; i < Nodes.Count; i++)
+        for (int i = 0; i < currentNodes.Count; i++)
         {
-            //check upper
-            if(Nodes[i + 1] != null)
-            {
+            int randomint = Random.Range(0, 4);
 
-            }
-            //check lower
-            if (Nodes[i - 1] != null)
+            if (currentNodes[i] == currentNodes[currentNodes.Count])
             {
-
-            }
-            //check right
-            if(Nodes[i + size.x] != null)
-            {
-
-            }
-            //check left
-            if (Nodes[i - size.x] != null)
-            {
-
+                Debug.Log("wawd");
+                //check upper
+                if (i + 1 < Nodes.Count && randomint == 0)
+                {
+                    Nodes[index + 1].SetState(States.completed);
+                }
+                //check lower
+                if (i - 1 > 0 && randomint == 1)
+                {
+                    Nodes[index - 1].SetState(States.completed);
+                }
+                //check right
+                if (i + size.x < Nodes.Count && randomint == 2)
+                {
+                    Nodes[index + size.x].SetState(States.completed);
+                }
+                //check left
+                if (i - size.x > 0 && randomint == 3)
+                {
+                    Nodes[index - size.x].SetState(States.completed);
+                }
+                else return;
             }
         }
     }

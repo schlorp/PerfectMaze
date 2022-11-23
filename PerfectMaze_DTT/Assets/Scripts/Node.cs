@@ -10,9 +10,6 @@ public enum States
 }
 public class Node : MonoBehaviour
 {
-    private void Start()
-    {
-    }
     public void SetState(States state)
     {
         switch(state)
