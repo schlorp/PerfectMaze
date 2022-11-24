@@ -10,18 +10,23 @@ public enum States
 }
 public class Node : MonoBehaviour
 {
+    public List<GameObject> walls = new List<GameObject>();
+
+    private void Start()
+    {
+    }
     public void SetState(States state)
     {
         switch(state)
         {
             case States.unused:
-                gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
+                gameObject.GetComponentInChildren<MeshRenderer>().material.color = Color.white;
                 break;
             case States.current:
-                gameObject.GetComponent<MeshRenderer>().material.color = Color.yellow;
+                gameObject.GetComponentInChildren<MeshRenderer>().material.color = Color.yellow;
                 break;
             case States.completed:
-                gameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
+                gameObject.GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
                 break;
         }
     }
