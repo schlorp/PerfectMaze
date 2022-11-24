@@ -35,10 +35,10 @@ public class MazeGen : MonoBehaviour
         currentNodes.Add(Nodes[index]);
         currentNodes[0].SetState(States.current);
 
-        CreateMaze();
+        StartCoroutine(CreateMaze());
     }
 
-    public void CreateMaze()
+    public IEnumerator CreateMaze()
     {
         while(currentNodes.Count < Nodes.Count)
         {
@@ -83,7 +83,6 @@ public class MazeGen : MonoBehaviour
             {
                 //backtrack
                 Debug.Log("BackTraks");
-                return;
             }
             else
             {
@@ -95,7 +94,6 @@ public class MazeGen : MonoBehaviour
                         //top
                         Nodes[currentNodeIndex + 1].SetState(States.current);
                         currentNodes.Add(Nodes[currentNodeIndex + 1]);
-
                         break;
                     case 1:
                         //bottom
@@ -114,71 +112,7 @@ public class MazeGen : MonoBehaviour
                         break;
                 }
             }
+            yield return new WaitForSeconds(0.05f);
         }
     }
-
-    public void BackTrack()
-    {
-
-    }
-
-
-        /*
-        if (i + 1 < Nodes.Count && randomint == 0)
-        {
-            Nodes[index + 1].SetState(States.completed);
-        }
-        //check lower
-        if (i - 1 > 0 && randomint == 1)
-        {
-            Nodes[index - 1].SetState(States.completed);
-        }
-        //check right
-        if (i + size.x < Nodes.Count && randomint == 2)
-        {
-            Nodes[index + size.x].SetState(States.completed);
-        }
-        //check left
-        if (i - size.x > 0 && randomint == 3)
-        {
-            Nodes[index - size.x].SetState(States.completed);
-        }
-        else return;
-
-
-        for (int i = 0; i < currentNodes.Count; i++)
-        {
-            if (i + 1 == currentNodes.Count)
-            {
-                for (int ind = 0; ind < Nodes.Count; ind++)
-                {
-                    if (Nodes[ind] != currentNodes[i]) continue;
-
-                    int randomint = Random.Range(0, 4);
-                    Debug.Log(randomint);
-                    //check uppper
-                    if (i + 1 < Nodes.Count && randomint == 0)
-                    {
-                        Nodes[index + 1].SetState(States.completed);
-                    }
-                    //check lower
-                    if (i - 1 > 0 && randomint == 1)
-                    {
-                        Nodes[index - 1].SetState(States.completed);
-                    }
-                    //check right
-                    if (i + size.x < Nodes.Count && randomint == 2)
-                    {
-                        Nodes[index + size.x].SetState(States.completed);
-                    }
-                    //check left
-                    if (i - size.x > 0 && randomint == 3)
-                    {
-                        Nodes[index - size.x].SetState(States.completed);
-                    }
-                    else return;
-                }
-            }
-        }
-        */
 }
