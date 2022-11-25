@@ -46,17 +46,17 @@ public class MazeGen : MonoBehaviour
             List<int> possible = new List<int>();
 
             //check upper
-            if (currentNodeIndex + 1 < Nodes.Count)
+            if (currentNodeIndex + size.y < Nodes.Count)
             {
-                if(!completed.Contains(Nodes[currentNodeIndex + 1]) || !currentNodes.Contains(Nodes[currentNodeIndex + 1]))
+                if(!completed.Contains(Nodes[currentNodeIndex + size.y]) || !currentNodes.Contains(Nodes[currentNodeIndex + size.y]))
                 {
                     possible.Add(0);
                 }
             }
             //check lower
-            if (currentNodeIndex - 1 > 0)
+            if (currentNodeIndex - size.y > 0)
             {
-                if (!completed.Contains(Nodes[currentNodeIndex - 1]) || !currentNodes.Contains(Nodes[currentNodeIndex - 1]))
+                if (!completed.Contains(Nodes[currentNodeIndex - size.y]) || !currentNodes.Contains(Nodes[currentNodeIndex - size.y]))
                 {
                     possible.Add(1);
                 }
