@@ -46,17 +46,17 @@ public class MazeGen : MonoBehaviour
             List<int> possible = new List<int>();
 
             //check upper
-            if (currentNodeIndex + size.y < Nodes.Count)
+            if (currentNodeIndex + 1 < Nodes.Count)
             {
-                if(!completed.Contains(Nodes[currentNodeIndex + size.y]) || !currentNodes.Contains(Nodes[currentNodeIndex + size.y]))
+                if(!completed.Contains(Nodes[currentNodeIndex + size.y]) && !currentNodes.Contains(Nodes[currentNodeIndex + 1]))
                 {
                     possible.Add(0);
                 }
             }
             //check lower
-            if (currentNodeIndex - size.y > 0)
+            if (currentNodeIndex - 1 > 0)
             {
-                if (!completed.Contains(Nodes[currentNodeIndex - size.y]) || !currentNodes.Contains(Nodes[currentNodeIndex - size.y]))
+                if (!completed.Contains(Nodes[currentNodeIndex - size.y]) && !currentNodes.Contains(Nodes[currentNodeIndex - 1]))
                 {
                     possible.Add(1);
                 }
@@ -64,7 +64,7 @@ public class MazeGen : MonoBehaviour
             //check right
             if (currentNodeIndex + size.x < Nodes.Count)
             {
-                if (!completed.Contains(Nodes[currentNodeIndex + size.x]) || currentNodes.Contains(Nodes[currentNodeIndex + size.x]))
+                if (!completed.Contains(Nodes[currentNodeIndex + size.x]) && currentNodes.Contains(Nodes[currentNodeIndex + size.x]))
                 {
                     possible.Add(2);
                 }
@@ -72,7 +72,7 @@ public class MazeGen : MonoBehaviour
             //check left
             if (currentNodeIndex - size.x > 0)
             {
-                if (!completed.Contains(Nodes[currentNodeIndex - size.x]) || currentNodes.Contains(Nodes[currentNodeIndex - size.x]))
+                if (!completed.Contains(Nodes[currentNodeIndex - size.x]) && currentNodes.Contains(Nodes[currentNodeIndex - size.x]))
                 {
                     possible.Add(3);
                 }
