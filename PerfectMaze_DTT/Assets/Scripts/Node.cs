@@ -12,8 +12,9 @@ public class Node : MonoBehaviour
 {
     public List<GameObject> walls = new List<GameObject>();
 
-    private void Start()
+    public void RemoveWall(int wallindex)
     {
+        walls[wallindex].SetActive(false);
     }
     public void SetState(States state)
     {
