@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PrefabNode: {fileID: 338738459681356312, guid: 0ead5f44e9d3cdf42a5c6c68b1386aa9, type: 3}
-  size: {x: 10, y: 10}
+  size: {x: 50, y: 50}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,7 +360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d05b2cc531cf0d4994202eaac57a024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  scrollspeed: 10
-  minY: 10
-  maxY: 80
+  speed: 25
+  scrollspeed: 5
+  minY: 5
+  maxY: 25

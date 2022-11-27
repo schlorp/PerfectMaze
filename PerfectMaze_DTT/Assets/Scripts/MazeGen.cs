@@ -15,7 +15,6 @@ public class MazeGen : MonoBehaviour
     {
         Generate();
     }
-    
 
     public void Generate()
     {
@@ -30,14 +29,14 @@ public class MazeGen : MonoBehaviour
             }
         }
 
+        //choose a random starting node
         currentNodes.Add(Nodes[Random.Range(0, Nodes.Count)]);
-        currentNodes[0].SetState(States.current);
-
-        StartCoroutine(CreateMaze());
+        CreateMaze();
     }
 
-    public IEnumerator CreateMaze()
+    public void CreateMaze()
     {
+        //while there are still nodes left to check this runs
         while(completed.Count < Nodes.Count)
         {
             List<int> possible = new List<int>();
@@ -47,11 +46,11 @@ public class MazeGen : MonoBehaviour
             int currentNodeX = currentNodeIndex / size.y;
             int currentNodeY = currentNodeIndex % size.y;
             
-
+            //check if for every direction if there is a node
             if (currentNodeX < size.x - 1)
             {
-                //check right
-                if(!completed.Contains(Nodes[currentNodeIndex + size.y]) && !currentNodes.Contains(Nodes[currentNodeIndex + size.y]))
+                //check if RightNode is in the current or completed node list
+                if (!completed.Contains(Nodes[currentNodeIndex + size.y]) && !currentNodes.Contains(Nodes[currentNodeIndex + size.y]))
                 {
                     possible.Add(1);
                     possibleNode.Add(currentNodeIndex + size.y);
@@ -59,7 +58,7 @@ public class MazeGen : MonoBehaviour
             }
             if (currentNodeX > 0)
             {
-                //check left
+                //check if LeftNode is in the current or completed node list
                 if (!completed.Contains(Nodes[currentNodeIndex - size.y]) && !currentNodes.Contains(Nodes[currentNodeIndex - size.y]))
                 {
                     possible.Add(2);
@@ -68,7 +67,7 @@ public class MazeGen : MonoBehaviour
             }
             if (currentNodeY < size.y - 1)
             {
-                //check top
+                //check if TopNode is in the current or completed node list
                 if (!completed.Contains(Nodes[currentNodeIndex + 1]) && !currentNodes.Contains(Nodes[currentNodeIndex + 1]))
                 {
                     possible.Add(3);
@@ -77,7 +76,7 @@ public class MazeGen : MonoBehaviour
             }
             if (currentNodeY > 0)
             {
-                //check bottom
+                //check if BottomNode is in the current or completed node list
                 if (!completed.Contains(Nodes[currentNodeIndex - 1]) && !currentNodes.Contains(Nodes[currentNodeIndex - 1]))
                 {
                     possible.Add(4);
@@ -85,7 +84,7 @@ public class MazeGen : MonoBehaviour
                 }
             }
 
-
+            //choose a random node from the possiblenodes
             if(possible.Count > 0)
             {
                 int chosenindex = Random.Range(0, possible.Count);
@@ -93,18 +92,22 @@ public class MazeGen : MonoBehaviour
 
                 switch (possible[chosenindex])
                 {
+                    //remove right walls
                     case 1:
                         chosennode.RemoveWall(1);
                         currentNodes[currentNodes.Count - 1].RemoveWall(0);
                         break;
+                    //remove left walls
                     case 2:
                         chosennode.RemoveWall(0);
                         currentNodes[currentNodes.Count - 1].RemoveWall(1);
                         break;
+                    //remove upper walls
                     case 3:
                         chosennode.RemoveWall(3);
                         currentNodes[currentNodes.Count - 1].RemoveWall(2);
                         break;
+                    //remove lowers walls
                     case 4:
                         chosennode.RemoveWall(2);
                         currentNodes[currentNodes.Count - 1].RemoveWall(3);
@@ -112,15 +115,13 @@ public class MazeGen : MonoBehaviour
                 }
 
                 currentNodes.Add(chosennode);
-                chosennode.SetState(States.current);
             }
             else
             {
+                //this backtracks the current node and sets the current nodes that have been completed to completed
                 completed.Add(currentNodes[currentNodes.Count - 1]);
-                currentNodes[currentNodes.Count - 1].SetState(States.completed);
                 currentNodes.RemoveAt(currentNodes.Count - 1);
             }
-            yield return new WaitForSeconds(.01f);
         }
     }
 }

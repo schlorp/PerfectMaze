@@ -21,13 +21,10 @@ public class Node : MonoBehaviour
         switch(state)
         {
             case States.unused:
-                gameObject.GetComponentInChildren<MeshRenderer>().material.color = Color.white;
                 break;
             case States.current:
-                gameObject.GetComponentInChildren<MeshRenderer>().material.color = Color.yellow;
                 break;
             case States.completed:
-                gameObject.GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
                 break;
         }
     }
