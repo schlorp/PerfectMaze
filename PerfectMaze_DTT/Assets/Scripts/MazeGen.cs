@@ -20,6 +20,8 @@ public class MazeGen : MonoBehaviour
         if (instance != null && instance != this) Destroy(this);
         else instance = this;
     }
+
+    
     public void Generate()
     {
         //clearing the lists if they are filled (for Regenerations)
@@ -143,11 +145,15 @@ public class MazeGen : MonoBehaviour
 
     public void SetSizeX(int aSize)
     {
-        size.x = aSize;
+        if(aSize > 250) size.x = 250;
+        else if (aSize < 10) size.x = 10;
+        else size.x = aSize;
     }
     public void SetSizeY(int aSize)
     {
-        size.y = aSize;
+        if (aSize > 250) size.y = 250;
+        else if (aSize < 10) size.y = 10;
+        else size.y = aSize;
     }
     public int GetsizeX()
     {

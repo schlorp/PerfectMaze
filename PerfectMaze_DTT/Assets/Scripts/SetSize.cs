@@ -11,17 +11,20 @@ public class SetSize : MonoBehaviour
     private void Start()
     {
         input = gameObject.GetComponent<InputField>();
+        //set the sizetext correctly to the value
         if (isX) input.text = MazeGen.instance.GetsizeX().ToString();
         else input.text = MazeGen.instance.GetsizeY().ToString();
     }
     public void SetSizeX()
     {
-        Debug.Log(input);
         MazeGen.instance.SetSizeX(int.Parse(input.text));
+        //set the sizetext correctly to the value
+        input.text = MazeGen.instance.GetsizeX().ToString();
     }
     public void SetSizeY()
     {
-        Debug.Log(input);
         MazeGen.instance.SetSizeY(int.Parse(input.text));
+        //set the sizetext correctly to the value
+        input.text = MazeGen.instance.GetsizeY().ToString();
     }
 }
