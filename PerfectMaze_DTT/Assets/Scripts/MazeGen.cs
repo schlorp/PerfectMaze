@@ -4,20 +4,36 @@ using UnityEngine;
 
 public class MazeGen : MonoBehaviour
 {
+    //singleton
+    public static MazeGen instance;
+
+    //variables
     public Node PrefabNode;
-    public Vector2Int size;
+    [SerializeField] private Vector2Int size;
     List<Node> Nodes = new List<Node>();
     List<Node> currentNodes = new List<Node>();
     List<Node> completed = new List<Node>();
 
-
-    void Start()
+    //checking singleton
+    private void Awake()
     {
-        Generate();
+        if (instance != null && instance != this) Destroy(this);
+        else instance = this;
     }
-
     public void Generate()
     {
+        //clearing the lists if they are filled (for Regenerations)
+        if(Nodes.Count > 0)
+        {
+            foreach (Node node in Nodes)
+            {
+                Destroy(node.gameObject);
+            }
+            Nodes.Clear();
+            currentNodes.Clear();
+            completed.Clear();
+        }
+
         //generating the maze
         for (int x = 0; x < size.x; x++)
         {
@@ -123,5 +139,22 @@ public class MazeGen : MonoBehaviour
                 currentNodes.RemoveAt(currentNodes.Count - 1);
             }
         }
+    }
+
+    public void SetSizeX(int aSize)
+    {
+        size.x = aSize;
+    }
+    public void SetSizeY(int aSize)
+    {
+        size.y = aSize;
+    }
+    public int GetsizeX()
+    {
+        return size.x;
+    }
+    public int GetsizeY()
+    {
+        return size.y;
     }
 }
