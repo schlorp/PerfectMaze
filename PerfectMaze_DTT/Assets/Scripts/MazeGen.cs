@@ -13,6 +13,10 @@ public class MazeGen : MonoBehaviour
     List<Node> Nodes = new List<Node>();
     List<Node> currentNodes = new List<Node>();
     List<Node> completed = new List<Node>();
+    bool requestgen;
+
+    int generationint;
+    [SerializeField] private int amountOfChecksPerFrame;
 
     //checking singleton
     private void Awake()
@@ -49,16 +53,29 @@ public class MazeGen : MonoBehaviour
 
         //choose a random starting node
         currentNodes.Add(Nodes[Random.Range(0, Nodes.Count)]);
-        CreateMaze();
+        requestgen = true;
+        SetGenerationText.instance.SetText("Generating... This may take a second!");
+    }
+    private void Update()
+    {
+        if (requestgen)
+        {
+            for (int i = 0; i < amountOfChecksPerFrame; i++)
+            {
+                CreateMaze();
+            }
+        }
     }
 
     public void CreateMaze()
     {
         //while there are still nodes left to check this runs
-        while(completed.Count < Nodes.Count)
+        List<int> possible = new List<int>();
+        List<int> possibleNode = new List<int>();
+        if (completed.Count < Nodes.Count)
         {
-            List<int> possible = new List<int>();
-            List<int> possibleNode = new List<int>();
+            possible.Clear();
+            possibleNode.Clear();
 
             int currentNodeIndex = Nodes.IndexOf(currentNodes[currentNodes.Count - 1]);
             int currentNodeX = currentNodeIndex / size.y;
@@ -141,6 +158,11 @@ public class MazeGen : MonoBehaviour
                 currentNodes.RemoveAt(currentNodes.Count - 1);
             }
         }
+        else
+        {
+            requestgen = false;
+            SetGenerationText.instance.SetText("Done!");
+        }
     }
 
     public void SetSizeX(int aSize)
@@ -162,5 +184,9 @@ public class MazeGen : MonoBehaviour
     public int GetsizeY()
     {
         return size.y;
+    }
+    public bool GetRequestGen()
+    {
+        return requestgen;
     }
 }

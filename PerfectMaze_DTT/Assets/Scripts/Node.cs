@@ -14,7 +14,7 @@ public class Node : MonoBehaviour
 
     public void RemoveWall(int wallindex)
     {
-        walls[wallindex].SetActive(false);
+        Destroy(walls[wallindex]);
     }
     public void SetState(States state)
     {
