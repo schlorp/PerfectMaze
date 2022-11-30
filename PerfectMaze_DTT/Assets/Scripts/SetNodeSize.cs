@@ -14,6 +14,7 @@ public class SetNodeSize : MonoBehaviour
     }
     public void SetSize()
     {
+        //setting the size in the maze class
         MazeGen.instance.SetNodeSize(int.Parse(input.text));
         //set the sizetext correctly to the value
         input.text = MazeGen.instance.GetNodesize().ToString();

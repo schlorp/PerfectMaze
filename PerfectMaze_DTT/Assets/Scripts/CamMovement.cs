@@ -10,7 +10,7 @@ public class CamMovement : MonoBehaviour
     public float maxY;
     void Update()
     {
-
+        //getting the floats of the axis
         float inputY = Input.GetAxis("Horizontal");
         float inputX = Input.GetAxis("Vertical");
         float scroll = Input.GetAxis("Mouse ScrollWheel");

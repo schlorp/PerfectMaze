@@ -17,12 +17,14 @@ public class SetMazeSize : MonoBehaviour
     }
     public void SetSizeX()
     {
+        //setting the size in the maze class
         MazeGen.instance.SetSizeX(int.Parse(input.text));
         //set the sizetext correctly to the value
         input.text = MazeGen.instance.GetsizeX().ToString();
     }
     public void SetSizeY()
     {
+        //setting the size in the maze class
         MazeGen.instance.SetSizeY(int.Parse(input.text));
         //set the sizetext correctly to the value
         input.text = MazeGen.instance.GetsizeY().ToString();

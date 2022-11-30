@@ -46,8 +46,10 @@ public class MazeGen : MonoBehaviour
         {
             for (int y = 0; y < size.y; y++)
             {
+                //instantiating a new node on te position of x an y who get itterated every loop
                 Vector3 newNodePos = new Vector3(x * nodesize - (size.x / 2f), 0, y * nodesize - (size.y / 2f));
                 Node newNode = Instantiate(PrefabNode, newNodePos, Quaternion.identity, transform);
+                //setting the size of the node to the user selected size
                 newNode.gameObject.transform.localScale = new Vector3(nodesize, nodesize , nodesize);
                 Nodes.Add(newNode);
             }
@@ -163,6 +165,7 @@ public class MazeGen : MonoBehaviour
         }
         else
         {
+            //this triggers when the loop is done
             requestgen = false;
             SetGenerationText.instance.SetText("Done!");
         }

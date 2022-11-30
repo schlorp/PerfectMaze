@@ -10,6 +10,7 @@ public class SetGenerationText : MonoBehaviour
 
     private void Awake()
     {
+        //singleton
         if (instance != null && instance != this) Destroy(this);
         else instance = this;
         text = GetComponent<TMP_Text>();
