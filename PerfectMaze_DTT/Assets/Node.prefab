@@ -53,6 +53,7 @@ MonoBehaviour:
   - {fileID: 5818951122797652144}
   - {fileID: 3108427884929180339}
   - {fileID: 8113809387879542443}
+  floor: {fileID: 6156962291772951737}
 --- !u!1 &3108427884929180339
 GameObject:
   m_ObjectHideFlags: 0
@@ -65,7 +66,7 @@ GameObject:
   - component: {fileID: 4463138108240734081}
   - component: {fileID: 6980356656831123328}
   - component: {fileID: 7511941474226891473}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WallUpper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +161,7 @@ GameObject:
   - component: {fileID: 8777850409387695897}
   - component: {fileID: 1306577791142886686}
   - component: {fileID: 7556649649710545924}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WallRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +256,7 @@ GameObject:
   - component: {fileID: 6123922664558369392}
   - component: {fileID: 6880980516764697282}
   - component: {fileID: 13865675185585198}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WallLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,7 +446,7 @@ GameObject:
   - component: {fileID: 1892254349001714139}
   - component: {fileID: 5177649186000823317}
   - component: {fileID: 1764563802569768456}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WallLower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
