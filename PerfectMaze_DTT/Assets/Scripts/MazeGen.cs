@@ -9,6 +9,7 @@ public class MazeGen : MonoBehaviour
 
     //variables
     public Node PrefabNode;
+    public int nodesize;
     [SerializeField] private Vector2Int size;
     List<Node> Nodes = new List<Node>();
     List<Node> currentNodes = new List<Node>();
@@ -26,7 +27,7 @@ public class MazeGen : MonoBehaviour
     }
 
     
-    public void Generate()
+    public void Create()
     {
         //clearing the lists if they are filled (for Regenerations)
         if(Nodes.Count > 0)
@@ -45,8 +46,9 @@ public class MazeGen : MonoBehaviour
         {
             for (int y = 0; y < size.y; y++)
             {
-                Vector3 newNodePos = new Vector3(x - (size.x / 2f), 0, y - (size.y / 2f));
+                Vector3 newNodePos = new Vector3(x * nodesize - (size.x / 2f), 0, y * nodesize - (size.y / 2f));
                 Node newNode = Instantiate(PrefabNode, newNodePos, Quaternion.identity, transform);
+                newNode.gameObject.transform.localScale = new Vector3(nodesize, nodesize , nodesize);
                 Nodes.Add(newNode);
             }
         }
@@ -58,16 +60,17 @@ public class MazeGen : MonoBehaviour
     }
     private void Update()
     {
+        //spreading the Generation over the frames
         if (requestgen)
         {
             for (int i = 0; i < amountOfChecksPerFrame; i++)
             {
-                CreateMaze();
+                GenerateMaze();
             }
         }
     }
 
-    public void CreateMaze()
+    public void GenerateMaze()
     {
         //while there are still nodes left to check this runs
         List<int> possible = new List<int>();
@@ -165,6 +168,7 @@ public class MazeGen : MonoBehaviour
         }
     }
 
+    #region Getters/Setters
     public void SetSizeX(int aSize)
     {
         if(aSize > 250) size.x = 250;
@@ -177,6 +181,12 @@ public class MazeGen : MonoBehaviour
         else if (aSize < 10) size.y = 10;
         else size.y = aSize;
     }
+    public void SetNodeSize(int aSize)
+    {
+        if (aSize > 10) nodesize = 10;
+        else if (aSize < 1) nodesize = 1;
+        else nodesize = aSize;
+    }
     public int GetsizeX()
     {
         return size.x;
@@ -185,8 +195,13 @@ public class MazeGen : MonoBehaviour
     {
         return size.y;
     }
+    public int GetNodesize()
+    {
+        return nodesize;
+    }
     public bool GetRequestGen()
     {
         return requestgen;
     }
+    #endregion
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SetSize : MonoBehaviour
+public class SetMazeSize : MonoBehaviour
 {
     InputField input;
     [SerializeField] private bool isX;
